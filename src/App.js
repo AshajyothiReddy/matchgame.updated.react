@@ -283,8 +283,11 @@ class App extends Component {
   }
 
   tick = () => {
-    const {isGameover} = this.state
-    if (isGameover === false) {
+    const {isGameover, timer} = this.state
+    if (timer === 0) {
+      clearInterval(this.timerId)
+      this.setState({isGameover: true})
+    } else if (isGameover === false) {
       this.setState(prevState => ({timer: prevState.timer - 1}))
     }
   }
